@@ -1,0 +1,19 @@
+<div class="main">
+  <div>
+    <h2>Calculate Genres</h2>
+    <button type="button" class="button-search" (click)="calculateGenres()">Store and Analyze</button>
+    <span class="processing blink">{{processing}}</span>
+  </div>
+  <table hidden="{{hidden}}" class="styled-table">
+    <thead>
+      <tr>
+        <th>Genre</th>
+        <th>quantity</th>
+      </tr> 
+    </thead>    
+    <tr *ngFor="let g of resGenres">
+      <td>{{g.name}}</td>
+      <td>{{g.count}}</td>
+    </tr>
+  </table>
+</div>

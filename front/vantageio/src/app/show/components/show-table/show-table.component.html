@@ -1,0 +1,49 @@
+<div class="main">
+  <h2>Search for shows data</h2>
+  <div>
+    <input type="text" class="search" id="search" name="search" #search>
+    <button type="button" class="button-search" (click)="searchShowData(search.value)">Search</button>
+    <span class="processing blink">{{processing}}</span>
+  </div>
+  <table *ngIf="result[0]" hidden="{{hidden}}" class="styled-table">
+    <thead>
+      <tr>
+        <th>Banner</th>
+        <th>Name</th>
+        <th>Genres</th>
+        <th>Language</th>
+        <th>Status</th>
+        <th>Days</th>
+        <th>Time</th>
+        <th>Add to Bookmark</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let comp of result">
+      <td *ngIf="comp.show.image"><div><img src="{{comp.show.image.medium}}"></div></td>
+      <td *ngIf="!comp.show.image"><div><img src="https://via.placeholder.com/100"></div></td>
+      <td>{{comp.show.name}}</td>
+      <td>{{comp.show.genres}}</td>
+      <td>{{comp.show.language}}</td>
+      <td>{{comp.show.status}}</td>
+      <td>[{{comp.show.schedule.days}}]</td>
+      <td>{{comp.show.schedule.time}}</td>
+      
+      <!--
+      <td *ngIf="comp.show.schedule.days[0]">[{{comp.show.schedule.days}}]</td>
+      <td *ngIf="!comp.show.schedule.days[0]">ND</td>
+      <td *ngIf="comp.show.schedule.time">{{comp.show.schedule.time}}</td>
+      <td *ngIf="!comp.show.schedule.time">ND</td>
+      -->
+    <td>
+      <button 
+          type="button" class="button" 
+          (click)="addBookmark(comp.show.id)">
+          Add
+      </button>
+    </td>
+    </tr>
+  </table>
+  <div>
+    <p *ngIf="!result[0]" hidden="{{hidden}}">No results</p>
+  </div>
+</div>
